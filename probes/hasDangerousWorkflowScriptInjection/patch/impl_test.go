@@ -1,3 +1,18 @@
+// Copyright 2023 OpenSSF Scorecard Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+//nolint:stylecheck
 package hasDangerousWorkflowScriptInjection
 
 import (
@@ -10,15 +25,14 @@ func Test_Run(t *testing.T) {
 	t.Parallel()
 	tests := []struct {
 		name     string
-		input      string
+		input    string
 		expected string
-		err      error
+		// err      error
 	}{
 		// Extracted from real Angular fix: https://github.com/angular/angular/pull/51026/files
-		{	
+		{
 			name: "var: Comment Body",
-			input:
-			`
+			input: `
 			name: Run benchmark comparison
 
 			on:
@@ -32,8 +46,7 @@ func Test_Run(t *testing.T) {
 						id: info
 						run: yarn benchmarks prepare-for-github-action "${{github.event.comment.body}}"
 			`,
-			expected:
-			`
+			expected: `
 			name: Run benchmark comparison
 
 			on:
@@ -51,10 +64,9 @@ func Test_Run(t *testing.T) {
 			`,
 		},
 		// Inspired on a real fix: https://github.com/googleapis/google-cloud-go/pull/9011/files
-		{	
+		{
 			name: "var: Pull Request Head Ref. Also uses untrusted input inside IF",
-			input:
-			`
+			input: `
 			name: apidiff
 			on:
 				pull_request:
@@ -80,8 +92,7 @@ func Test_Run(t *testing.T) {
 							fi
 							cat diff.txt && ! [ -s diff.txt ]
 			`,
-			expected:
-			`
+			expected: `
 			name: apidiff
 			on:
 				pull_request:
@@ -111,10 +122,9 @@ func Test_Run(t *testing.T) {
 			`,
 		},
 		// Inspired from a real lit/lit fix: https://github.com/lit/lit/pull/3669/files
-		{	
+		{
 			name: "var: Pull Request Body",
-			input:
-			`
+			input: `
 			name: Generate Release Image
 
 			on:
@@ -129,8 +139,7 @@ func Test_Run(t *testing.T) {
 						  run: |
 						    echo "${{ github.event.pull_request.body }}" > release.md
 			`,
-			expected:
-			`
+			expected: `
 			name: Generate Release Image
 
 			on:
@@ -148,10 +157,9 @@ func Test_Run(t *testing.T) {
 						    echo "$PULL_REQUEST_BODY" > release.md
 			`,
 		},
-		{	
+		{
 			name: "Two incidences in different jobs. Vars: issue title and issue body",
-			input:
-			`
+			input: `
 			on:
 				issue:
 			
@@ -168,8 +176,7 @@ func Test_Run(t *testing.T) {
 						  run: |
 						    echo "${{ github.event.issue.body }}" 
 			`,
-			expected:
-			`
+			expected: `
 			on:
 				issue:
 			
@@ -191,10 +198,9 @@ func Test_Run(t *testing.T) {
 							echo "$ISSUE_BODY" 
 			`,
 		},
-		{	
+		{
 			name: "Two incidences in same job. Vars: discussion title and discussion body",
-			input:
-			`
+			input: `
 			on:
 				discussion:
 					types: [created]
@@ -209,8 +215,7 @@ func Test_Run(t *testing.T) {
 						  run: |
 						    echo "${{ github.event.discussion.body }}"
 			`,
-			expected:
-			`
+			expected: `
 			on:
 				discussion:
 					types: [created]
@@ -230,10 +235,9 @@ func Test_Run(t *testing.T) {
 						    echo "$DISCUSSION_BODY"
 			`,
 		},
-		{	
+		{
 			name: "Two incidences in same step. Vars: issue comment and fork name",
-			input:
-			`
+			input: `
 			on:
 				fork
 				issue_comment:
@@ -246,8 +250,7 @@ func Test_Run(t *testing.T) {
 						    echo "${{ github.event.issue_comment.comment }}"
 							mkdir "${{ github.event.fork.forkee.name }}"
 			`,
-			expected:
-			`
+			expected: `
 			on:
 				fork
 				issue_comment:
