@@ -15,19 +15,41 @@
 package patch
 
 import (
+	"strings"
+
 	"github.com/google/go-cmp/cmp"
 	"github.com/ossf/scorecard/v4/checker"
 )
 
+func parseDiff(diff string) string {
+	i := strings.Index(diff, "\"\"\"\n")
+	if i == -1 {
+		return diff
+	}
+	//remove everything before """\n
+	diff = diff[i+4:]
+	i = strings.LastIndex(diff, "\"\"\"")
+	if i == -1 {
+		return diff
+	}
+	//remove everything after \n  \t"""
+	return diff[:i]
+}
+
 // TODO: Receive the dangerous workflow as parameter
 func GeneratePatch(f checker.File) string {
-	//TODO: Implement
+	// TODO: Implement
 	// example:
 	// type scriptInjection
 	// path {.github/workflows/active-elastic-job~active-elastic-job~build.yml  github.head_ref  91 0 0 1}
 	// snippet github.head_ref
-	src := "message=$(echo \"${{ github.event.head_commit.message }}\" | tail -n +3)"
-	dst := "message=$(echo $COMMIT | tail -n +3)"
-
-	return cmp.Diff(src, dst)
+	src := `asasas
+hello """ola"""
+	message=$(echo "${{ github.event.head_commit.message }}" | tail -n +3)
+adios`
+	dst := `asasas
+hello """ola"""
+	message=$(echo $COMMIT | tail -n +3)
+adios`
+	return parseDiff(cmp.Diff(src, dst))
 }
