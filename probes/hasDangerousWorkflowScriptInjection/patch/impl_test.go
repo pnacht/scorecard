@@ -1,4 +1,4 @@
-// Copyright 2023 OpenSSF Scorecard Authors
+// Copyright 2024 OpenSSF Scorecard Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,17 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//nolint:stylecheck
-package hasDangerousWorkflowScriptInjection
+package patch
 
 import (
 	"os"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+
+	"github.com/ossf/scorecard/v4/checker"
 )
 
-func Test_Run(t *testing.T) {
+func Test_GeneratePatch(t *testing.T) {
 	t.Parallel()
 	tests := []struct {
 		name     string
@@ -89,16 +90,16 @@ func Test_Run(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			input_content, err := os.ReadFile("./testdata/" + tt.input_filepath)
-			if err != nil {
-				t.Errorf("Couldn't read input testfile. Error:\n%s", err)
+			input_file := checker.File{
+				Path: tt.input_filepath,
 			}
 
 			expected_content, err := os.ReadFile("./testdata/" + tt.expected_filepath)
 			if err != nil {
 				t.Errorf("Couldn't read expected testfile. Error:\n%s", err)
 			}
-			output := Run(string(input_content[:]))
+
+			output := GeneratePatch(input_file)
 			if diff := cmp.Diff(string(expected_content[:]), output); diff != "" {
 				t.Errorf("mismatch (-want +got):\n%s", diff)
 			}
