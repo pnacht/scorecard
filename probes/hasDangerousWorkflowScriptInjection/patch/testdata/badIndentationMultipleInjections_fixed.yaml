@@ -37,3 +37,4 @@ jobs:
           exit 1
         fi
       another_test="$GITHUB_HEAD_REF"
+# Extra line below, to test the case of a /newline at the EOF
