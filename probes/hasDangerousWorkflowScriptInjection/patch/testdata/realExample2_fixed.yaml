@@ -8,6 +8,9 @@ permissions:
   contents: read
   pull-requests: write
 
+env:
+  PULL_REQUEST_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+
 jobs:
   scan_changes:
     runs-on: ubuntu-latest
@@ -79,8 +82,6 @@ jobs:
       # Only ignore Go interface additions when the PR is from OwlBot as it is
       # likely a new method added to the gRPC client stub interface, which is
       # non-breaking.
-      env:
-        PULL_REQUEST_HEAD_REF: ${{ github.event.pull_request.head.ref }}
       run: |
         cd ${{ matrix.changed }} && apidiff -m -incompatible ${{ steps.baseline.outputs.pkg }} . > diff.txt
         if [[ "$PULL_REQUEST_HEAD_REF" == owl-bot-copy ]]; then

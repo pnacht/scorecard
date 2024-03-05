@@ -15,16 +15,16 @@ on:
   discussion:
     types: [created]
 
+env:
+  DISCUSSION_BODY: ${{ github.event.discussion.body }}
+  DISCUSSION_TITLE: ${{ github.event.discussion.title }}
+
 jobs:
   really-complete-job:
     steps:
       - name: it's only the beginning
-        env:
-          DISCUSSION_TITLE: ${{ github.event.discussion.title }}
         run: |
           echo "$DISCUSSION_TITLE"
       - name: ok, now we're talking
-        env:
-          DISCUSSION_BODY: ${{ github.event.discussion.body }}
         run: |
           echo "$DISCUSSION_BODY"

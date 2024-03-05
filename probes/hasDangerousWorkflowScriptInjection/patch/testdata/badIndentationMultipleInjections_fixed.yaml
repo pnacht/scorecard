@@ -13,6 +13,10 @@
 # limitations under the License.
   on: [pull_request]
 
+  env:
+    ISSUE_TITLE: ${{ github.event.issue.title }}
+    GITHUB_HEAD_REF: ${{ github.head_ref }}
+
   jobs:
         build:
           name: Build and test
@@ -30,9 +34,6 @@
                         #       some extra tabs here to check if they're kept
 
             - name: Check title
-              env:
-                ISSUE_TITLE: ${{ github.event.issue.title }}
-                GITHUB_HEAD_REF: ${{ github.head_ref }}
               run: |
                           title="$ISSUE_TITLE"
                           if [[ ! $title =~ ^.*:\ .*$ ]]; then

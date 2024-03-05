@@ -13,6 +13,9 @@
 # limitations under the License.
 on: [pull_request]
 
+env:
+  COMMITS_MESSAGE: ${{ github.event.commits[0].message }}
+
 jobs:
   build:
     name: Build and test
@@ -23,8 +26,6 @@ jobs:
         ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Check msg
-      env:
-        COMMITS_MESSAGE: ${{ github.event.commits[0].message }}
       run: |
         msg="$COMMITS_MESSAGE"
         if [[ ! $msg =~ ^.*:\ .*$ ]]; then

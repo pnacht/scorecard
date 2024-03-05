@@ -8,6 +8,9 @@ on:
     paths:
       - '**/CHANGELOG.md'
 
+env:
+  PULL_REQUEST_BODY: ${{ github.event.pull_request.body }} 
+
 jobs:
   release-image:
     if: github.repository == 'lit/lit'
@@ -28,8 +31,6 @@ jobs:
         run: npm run build
 
       - name: Create release image
-        env:
-          PULL_REQUEST_BODY: ${{ github.event.pull_request.body }} 
         run: |
           # Store the PR body contents containing the changelog in 'release.md'
           cat <<'EOF' > release.md

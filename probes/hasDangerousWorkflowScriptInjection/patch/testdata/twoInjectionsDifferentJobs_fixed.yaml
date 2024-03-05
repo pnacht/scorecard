@@ -14,19 +14,19 @@
 on:
   issue:
     
+env:
+  ISSUE_BODY: ${{ github.event.issue.body }}
+  ISSUE_TITLE: "${{ github.event.issue.title }}"
+
 jobs:
   fascinating-job:
     steps:
       - name: it runs like magic
-        env:
-          ISSUE_TITLE: "${{ github.event.issue.title }}"
         run: |
           echo "$ISSUE_TITLE"
 
   incredible-other-job:
     steps:
       - name: absolutely outstanding, safe as nothing else
-        env:
-          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
           echo "$ISSUE_BODY" 
