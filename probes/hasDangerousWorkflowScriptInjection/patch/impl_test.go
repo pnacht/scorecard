@@ -80,6 +80,12 @@ func Test_GeneratePatch(t *testing.T) {
 			expected_filepath: "badIndentationMultipleInjections_fixed.yaml",
 		},
 		{
+			// Currently we're not keeping this pattern, as we always add a blankline after the env block
+			name: "File with no blank lines between blocks",
+			input_filepath: "noLineBreaksBetweenBlocks.yaml",
+			expected_filepath: "noLineBreaksBetweenBlocks_fixed.yaml",
+		},
+		{
 			name: "Ignore if user input regex is just part of a comment",
 			input_filepath: "safeExample.yaml",
 			expected_filepath: "safeExample.yaml",
