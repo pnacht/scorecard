@@ -13,25 +13,28 @@
 # limitations under the License.
   on: [pull_request]
 
-jobs:
-      build:
-    name: Build and test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
+  jobs:
+        build:
+          name: Build and test
+          runs-on: ubuntu-latest
+          steps:
+            - uses: actions/checkout@v2
+              with:
+                ref: ${{ github.event.pull_request.head.sha }}
 
-# I make no sense
+  # I make no sense
 
-                      # not really
+                        # not really
 
-    - name: Check title
-      run: |
-                  title="${{ github.event.issue.title }}"
-          if [[ ! $title =~ ^.*:\ .*$ ]]; then
-          echo "Bad issue title"
-          exit 1
-        fi
-      another_test="${{ github.head_ref }}"
-# Extra line below, to test the case of a /newline at the EOF
+
+                        #       some extra tabs here to check if they're kept
+
+            - name: Check title
+              run: |
+                          title="${{ github.event.issue.title }}"
+                          if [[ ! $title =~ ^.*:\ .*$ ]]; then
+                            echo "Bad issue title"
+                            exit 1
+                          fi
+                          another_test="${{ github.head_ref }}"
+# Extra line below, to test the case of a /newline at EOF
