@@ -75,6 +75,11 @@ func Test_GeneratePatch(t *testing.T) {
 			expected_filepath: "twoInjectionsSameStep_fixed.yaml",
 		},
 		{
+			name: "Workflow already has env vars defined in different scopes",
+			input_filepath: "envVarsAlreadyExist.yaml",
+			expected_filepath: "envVarsAlreadyExist_fixed.yaml",
+		},
+		{
 			name: "Bad indentation is kept the same",
 			input_filepath: "badIndentationMultipleInjections.yaml",
 			expected_filepath: "badIndentationMultipleInjections_fixed.yaml",
