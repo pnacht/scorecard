@@ -26,74 +26,74 @@ import (
 func Test_GeneratePatch(t *testing.T) {
 	t.Parallel()
 	tests := []struct {
-		name     string
-		input_filepath    string
-		expected_filepath string
+		name             string
+		inputFilepath    string
+		expectedFilepath string
 		// err      error
 	}{
 		// Extracted from real Angular fix: https://github.com/angular/angular/pull/51026/files
 		{
-			name: "Real Example 1",
-			input_filepath: "realExample1.yaml",
-			expected_filepath: "realExample1_fixed.yaml",
+			name:             "Real Example 1",
+			inputFilepath:    "realExample1.yaml",
+			expectedFilepath: "realExample1_fixed.yaml",
 		},
 		// Inspired on a real fix: https://github.com/googleapis/google-cloud-go/pull/9011/files
 		{
-			name: "Real Example 2",
-			input_filepath: "realExample2.yaml",
-			expected_filepath: "realExample2_fixed.yaml",
+			name:             "Real Example 2",
+			inputFilepath:    "realExample2.yaml",
+			expectedFilepath: "realExample2_fixed.yaml",
 		},
 		// Inspired from a real lit/lit fix: https://github.com/lit/lit/pull/3669/files
 		{
-			name: "Real Example 3",
-			input_filepath: "realExample3.yaml",
-			expected_filepath: "realExample3_fixed.yaml",
+			name:             "Real Example 3",
+			inputFilepath:    "realExample3.yaml",
+			expectedFilepath: "realExample3_fixed.yaml",
 		},
 		{
-			name: "Test all (or most) types of user input that should be detected",
-			input_filepath: "allKindsOfUserInput.yaml",
-			expected_filepath: "allKindsOfUserInput_fixed.yaml",
+			name:             "Test all (or most) types of user input that should be detected",
+			inputFilepath:    "allKindsOfUserInput.yaml",
+			expectedFilepath: "allKindsOfUserInput_fixed.yaml",
 		},
 		{
-			name: "User's input is assigned to a variable before used",
-			input_filepath: "userInputAssignedToVariable.yaml",
-			expected_filepath: "userInputAssignedToVariable_fixed.yaml",
+			name:             "User's input is assigned to a variable before used",
+			inputFilepath:    "userInputAssignedToVariable.yaml",
+			expectedFilepath: "userInputAssignedToVariable_fixed.yaml",
 		},
 		{
-			name: "Two incidences in different jobs",
-			input_filepath: "twoInjectionsDifferentJobs.yaml",
-			expected_filepath: "twoInjectionsDifferentJobs_fixed.yaml",
+			name:             "Two incidences in different jobs",
+			inputFilepath:    "twoInjectionsDifferentJobs.yaml",
+			expectedFilepath: "twoInjectionsDifferentJobs_fixed.yaml",
 		},
 		{
-			name: "Two incidences in same job",
-			input_filepath: "twoInjectionsSameJob.yaml",
-			expected_filepath: "twoInjectionsSameJob_fixed.yaml",
+			name:             "Two incidences in same job",
+			inputFilepath:    "twoInjectionsSameJob.yaml",
+			expectedFilepath: "twoInjectionsSameJob_fixed.yaml",
 		},
 		{
-			name: "Two incidences in same step",
-			input_filepath: "twoInjectionsSameStep.yaml",
-			expected_filepath: "twoInjectionsSameStep_fixed.yaml",
+			name:             "Two incidences in same step",
+			inputFilepath:    "twoInjectionsSameStep.yaml",
+			expectedFilepath: "twoInjectionsSameStep_fixed.yaml",
 		},
 		{
-			name: "Workflow already has env vars defined in different scopes",
-			input_filepath: "envVarsAlreadyExist.yaml",
-			expected_filepath: "envVarsAlreadyExist_fixed.yaml",
+			name:             "Workflow already has env vars defined in different scopes",
+			inputFilepath:    "envVarsAlreadyExist.yaml",
+			expectedFilepath: "envVarsAlreadyExist_fixed.yaml",
 		},
 		{
-			name: "Bad indentation is kept the same",
-			input_filepath: "badIndentationMultipleInjections.yaml",
-			expected_filepath: "badIndentationMultipleInjections_fixed.yaml",
+			name:             "Bad indentation is kept the same",
+			inputFilepath:    "badIndentationMultipleInjections.yaml",
+			expectedFilepath: "badIndentationMultipleInjections_fixed.yaml",
 		},
 		{
 			// Currently we're not keeping this pattern, as we always add a blankline after the env block
-			name: "File with no blank lines between blocks",
-			input_filepath: "noLineBreaksBetweenBlocks.yaml",
-			expected_filepath: "noLineBreaksBetweenBlocks_fixed.yaml",
+			name:             "File with no blank lines between blocks",
+			inputFilepath:    "noLineBreaksBetweenBlocks.yaml",
+			expectedFilepath: "noLineBreaksBetweenBlocks_fixed.yaml",
 		},
 		{
-			name: "Ignore if user input regex is just part of a comment",
-			input_filepath: "safeExample.yaml",
-			expected_filepath: "safeExample.yaml",
+			name:             "Ignore if user input regex is just part of a comment",
+			inputFilepath:    "safeExample.yaml",
+			expectedFilepath: "safeExample.yaml",
 		},
 	}
 	for _, tt := range tests {
@@ -101,17 +101,17 @@ func Test_GeneratePatch(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			input_file := checker.File{
-				Path: tt.input_filepath,
+			inputFile := checker.File{
+				Path: tt.inputFilepath,
 			}
 
-			expected_content, err := os.ReadFile("./testdata/" + tt.expected_filepath)
+			expectedContent, err := os.ReadFile("./testdata/" + tt.expectedFilepath)
 			if err != nil {
 				t.Errorf("Couldn't read expected testfile. Error:\n%s", err)
 			}
 
-			output := GeneratePatch(input_file)
-			if diff := cmp.Diff(string(expected_content[:]), output); diff != "" {
+			output := GeneratePatch(inputFile)
+			if diff := cmp.Diff(string(expectedContent[:]), output); diff != "" {
 				t.Errorf("mismatch (-want +got):\n%s", diff)
 			}
 		})
