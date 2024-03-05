@@ -12,21 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 on:
-	issue:
-		
+  issue:
+    
 jobs:
-	fascinating-job:
-		steps:
-			- name: it runs like magic
-				env:
-					ISSUE_TITLE: "${{ github.event.issue.title }}"
-				run: |
-					echo "$ISSUE_TITLE"
+  fascinating-job:
+    steps:
+      - name: it runs like magic
+        env:
+          ISSUE_TITLE: "${{ github.event.issue.title }}"
+        run: |
+          echo "$ISSUE_TITLE"
 
-	incredible-other-job:
-		steps:
-			- name: absolutely outstanding, safe as nothing else
-				env:
-					ISSUE_BODY: ${{ github.event.issue.body }}
-				run: |
-					echo "$ISSUE_BODY" 
+  incredible-other-job:
+    steps:
+      - name: absolutely outstanding, safe as nothing else
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          echo "$ISSUE_BODY" 

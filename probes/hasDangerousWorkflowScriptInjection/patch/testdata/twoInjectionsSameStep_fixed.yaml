@@ -12,16 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 on:
-	fork:
-	issue_comment:
-		types: [created, edited]
+  fork:
+  issue_comment:
+    types: [created, edited]
 jobs:
-	solution-to-all-repo-problems:
-		steps:
-			- name: where things are done
-				env:
-					ISSUE_COMMENT_COMMENT: ${{ github.event.issue_comment.comment }}
-					FORK_FORKEE_NAME: ${{ github.event.fork.forkee.name }}
-				run: |
-					echo "$ISSUE_COMMENT_COMMENT"
-					mkdir "$FORK_FORKEE_NAME"
+  solution-to-all-repo-problems:
+    steps:
+      - name: where things are done
+        env:
+          ISSUE_COMMENT_COMMENT: ${{ github.event.issue_comment.comment }}
+          FORK_FORKEE_NAME: ${{ github.event.fork.forkee.name }}
+        run: |
+          echo "$ISSUE_COMMENT_COMMENT"
+          mkdir "$FORK_FORKEE_NAME"

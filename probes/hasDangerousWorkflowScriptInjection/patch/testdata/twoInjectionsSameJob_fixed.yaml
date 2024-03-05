@@ -12,19 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 on:
-	discussion:
-		types: [created]
+  discussion:
+    types: [created]
 
 jobs:
-	really-complete-job:
-		steps:
-			- name: it's only the beginning
-				env:
-					DISCUSSION_TITLE: ${{ github.event.discussion.title }}
-				run: |
-					echo "$DISCUSSION_TITLE"
-			- name: ok, now we're talking
-				env:
-					DISCUSSION_BODY: ${{ github.event.discussion.body }}
-				run: |
-					echo "$DISCUSSION_BODY"
+  really-complete-job:
+    steps:
+      - name: it's only the beginning
+        env:
+          DISCUSSION_TITLE: ${{ github.event.discussion.title }}
+        run: |
+          echo "$DISCUSSION_TITLE"
+      - name: ok, now we're talking
+        env:
+          DISCUSSION_BODY: ${{ github.event.discussion.body }}
+        run: |
+          echo "$DISCUSSION_BODY"

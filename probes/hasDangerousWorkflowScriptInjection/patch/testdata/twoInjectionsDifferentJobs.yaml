@@ -12,17 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 on:
-	issue:
+  issue:
 
 jobs:
-	fascinating-job:
-		steps:
-			- name: it runs like magic
-				run: |
-					echo "${{ github.event.issue.title }}"
+  fascinating-job:
+    steps:
+      - name: it runs like magic
+        run: |
+          echo "${{ github.event.issue.title }}"
 
-	incredible-other-job:
-		steps:
-			- name: absolutely outstanding, safe as nothing else
-				run: |
-					echo "${{ github.event.issue.body }}" 
+  incredible-other-job:
+    steps:
+      - name: absolutely outstanding, safe as nothing else
+        run: |
+          echo "${{ github.event.issue.body }}" 

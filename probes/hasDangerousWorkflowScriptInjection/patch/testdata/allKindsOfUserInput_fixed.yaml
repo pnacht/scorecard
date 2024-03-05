@@ -12,50 +12,50 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 on:
-	issue:
+  issue:
 jobs:
-	pretty-generic-job:
-		steps:
-			- name: everything everywhere in on job
-				env:
-					COMMENT_BODY: "${{ github.event.comment.body }}"
-					COMMIT_COMMENT: "${{ github.event.commit_comment.comment.body }}"
-					COMMIT_MESSAGE: "${{ github.event.commits[0].message }}"
-					COMMIT_AUTHOR_EMAIL: "${{ github.event.commits[0].author.email }}"
-					COMMIT_AUTHOR_NAME: "${{ github.event.commits[0].author.name }}"
-					FORK_FORKEE_NAME: ${{ github.event.fork.forkee.name }}
-					HEAD_COMMIT_MESSAGE: "${{ github.event.head_commit.message }}"
-					HEAD_COMMIT_AUTHOR_EMAIL: "${{ github.event.head_commit.author.email }}"
-					HEAD_COMMIT_AUTHOR_NAME: "${{ github.event.head_commit.author.name }}"
-					ISSUE_TITLE: "${{ github.event.issue.title }}"
-					ISSUE_BODY: "${{ github.event.issue.body }}"
-					ISSUE_COMMENT_COMMENT: "${{ github.event.issue_comment.comment.body }}"
-					PAGE_NAME: "${{ github.event.pages[0].page_name }}"
-					PULL_REQUEST_BODY: "${{ github.event.pull_request.body }}"
-					PULL_REQUEST_TITLE: "${{ github.event.pull_request.title }}"
-					PULL_REQUEST_HEAD_REF: "${{ github.event.pull_request.head.ref }}"
-					PULL_REQUEST_HEAD_LABEL: "${{ github.event.pull_request.head.label }}"
-					REPO_PULL_REQUEST_DEFAULT_BRANCH: "${{ github.event.pull_request.head.repo.default_branch }}"
-					REVIEW_BODY: "${{ github.event.review.body }}"
-					HEAD_REF: "${{ github.head_ref }}"
-				run: |
-					echo "$COMMENT_BODY"
-					echo "$COMMIT_COMMENT"
-					echo "$COMMIT_MESSAGE"
-					echo "$COMMIT_AUTHOR_EMAIL"
-					echo "$COMMIT_AUTHOR_NAME"
-					echo "$FORK_FORKEE_NAME"
-					echo "$HEAD_COMMIT_MESSAGE"
-					echo "$HEAD_COMMIT_AUTHOR_EMAIL"
-					echo "$HEAD_COMMIT_AUTHOR_NAME"
-					echo "$ISSUE_TITLE"
-					echo "$ISSUE_BODY"
-					echo "$ISSUE_COMMENT_COMMENT"
-					echo "$PAGE_NAME"
-					echo "$PULL_REQUEST_BODY"
-					echo "$PULL_REQUEST_TITLE"
-					echo "$PULL_REQUEST_HEAD_REF"
-					echo "$PULL_REQUEST_HEAD_LABEL"
-					echo "$REPO_PULL_REQUEST_DEFAULT_BRANCH"
-					echo "$REVIEW_BODY"
-					echo "$HEAD_REF"
+  pretty-generic-job:
+    steps:
+      - name: everything everywhere in on job
+        env:
+          COMMENT_BODY: "${{ github.event.comment.body }}"
+          COMMIT_COMMENT: "${{ github.event.commit_comment.comment.body }}"
+          COMMIT_MESSAGE: "${{ github.event.commits[0].message }}"
+          COMMIT_AUTHOR_EMAIL: "${{ github.event.commits[0].author.email }}"
+          COMMIT_AUTHOR_NAME: "${{ github.event.commits[0].author.name }}"
+          FORK_FORKEE_NAME: ${{ github.event.fork.forkee.name }}
+          HEAD_COMMIT_MESSAGE: "${{ github.event.head_commit.message }}"
+          HEAD_COMMIT_AUTHOR_EMAIL: "${{ github.event.head_commit.author.email }}"
+          HEAD_COMMIT_AUTHOR_NAME: "${{ github.event.head_commit.author.name }}"
+          ISSUE_TITLE: "${{ github.event.issue.title }}"
+          ISSUE_BODY: "${{ github.event.issue.body }}"
+          ISSUE_COMMENT_COMMENT: "${{ github.event.issue_comment.comment.body }}"
+          PAGE_NAME: "${{ github.event.pages[0].page_name }}"
+          PULL_REQUEST_BODY: "${{ github.event.pull_request.body }}"
+          PULL_REQUEST_TITLE: "${{ github.event.pull_request.title }}"
+          PULL_REQUEST_HEAD_REF: "${{ github.event.pull_request.head.ref }}"
+          PULL_REQUEST_HEAD_LABEL: "${{ github.event.pull_request.head.label }}"
+          REPO_PULL_REQUEST_DEFAULT_BRANCH: "${{ github.event.pull_request.head.repo.default_branch }}"
+          REVIEW_BODY: "${{ github.event.review.body }}"
+          HEAD_REF: "${{ github.head_ref }}"
+        run: |
+          echo "$COMMENT_BODY"
+          echo "$COMMIT_COMMENT"
+          echo "$COMMIT_MESSAGE"
+          echo "$COMMIT_AUTHOR_EMAIL"
+          echo "$COMMIT_AUTHOR_NAME"
+          echo "$FORK_FORKEE_NAME"
+          echo "$HEAD_COMMIT_MESSAGE"
+          echo "$HEAD_COMMIT_AUTHOR_EMAIL"
+          echo "$HEAD_COMMIT_AUTHOR_NAME"
+          echo "$ISSUE_TITLE"
+          echo "$ISSUE_BODY"
+          echo "$ISSUE_COMMENT_COMMENT"
+          echo "$PAGE_NAME"
+          echo "$PULL_REQUEST_BODY"
+          echo "$PULL_REQUEST_TITLE"
+          echo "$PULL_REQUEST_HEAD_REF"
+          echo "$PULL_REQUEST_HEAD_LABEL"
+          echo "$REPO_PULL_REQUEST_DEFAULT_BRANCH"
+          echo "$REVIEW_BODY"
+          echo "$HEAD_REF"
