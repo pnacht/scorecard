@@ -80,7 +80,7 @@ func Test_GeneratePatch(t *testing.T) {
 			expected_filepath: "badIndentationMultipleInjections_fixed.yaml",
 		},
 		{
-			name: "A safe workflow is kept the same",
+			name: "Ignore if user input regex is just part of a comment",
 			input_filepath: "safeExample.yaml",
 			expected_filepath: "safeExample.yaml",
 		},
