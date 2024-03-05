@@ -1,4 +1,5 @@
 name: Generate Release Image
+
 on:
   pull_request:
     paths:
@@ -6,6 +7,7 @@ on:
   push:
     paths:
       - '**/CHANGELOG.md'
+
 jobs:
   release-image:
     if: github.repository == 'lit/lit'
