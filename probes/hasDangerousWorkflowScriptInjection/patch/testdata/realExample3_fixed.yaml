@@ -9,7 +9,7 @@ on:
       - '**/CHANGELOG.md'
 
 env:
-  PULL_REQUEST_BODY: ${{ github.event.pull_request.body }} 
+  PR_BODY: ${{ github.event.pull_request.body }} 
 
 jobs:
   release-image:
@@ -34,7 +34,7 @@ jobs:
         run: |
           # Store the PR body contents containing the changelog in 'release.md'
           cat <<'EOF' > release.md
-          $PULL_REQUEST_BODY
+          $PR_BODY
           EOF
           # Only render the pull request content including and after the "#
           # Releases" heading.
