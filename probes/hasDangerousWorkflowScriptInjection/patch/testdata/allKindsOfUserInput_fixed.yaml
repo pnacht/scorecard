@@ -20,6 +20,8 @@ env:
   COMMIT_MESSAGE: "${{ github.event.commits[0].message }}"
   COMMIT_AUTHOR_EMAIL: "${{ github.event.commits[0].author.email }}"
   COMMIT_AUTHOR_NAME: "${{ github.event.commits[0].author.name }}"
+  DISCUSSION_BODY: ${{ github.event.discussion.body }}
+  DISCUSSION_TITLE: ${{ github.event.discussion.title }}
   FORK_FORKEE_NAME: ${{ github.event.fork.forkee.name }}
   HEAD_COMMIT_MESSAGE: "${{ github.event.head_commit.message }}"
   HEAD_COMMIT_AUTHOR_EMAIL: "${{ github.event.head_commit.author.email }}"
@@ -46,6 +48,8 @@ jobs:
           echo "$COMMIT_MESSAGE"
           echo "$COMMIT_AUTHOR_EMAIL"
           echo "$COMMIT_AUTHOR_NAME"
+          echo "$DISCUSSION_BODY"
+          echo "$DISCUSSION_TITLE"
           echo "$FORK_FORKEE_NAME"
           echo "$HEAD_COMMIT_MESSAGE"
           echo "$HEAD_COMMIT_AUTHOR_EMAIL"
