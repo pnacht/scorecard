@@ -111,8 +111,8 @@ func Test_GeneratePatch(t *testing.T) {
 		// },
 		{
 			name:             "Ignore if user input regex is just part of a comment",
-			inputFilepath:    "safeExample.yaml",
-			expectedFilepath: "safeExample.yaml",
+			inputFilepath:    "ignorePatternInsideComments.yaml",
+			expectedFilepath: "ignorePatternInsideComments.yaml",
 		},
 	}
 	for _, tt := range tests {
