@@ -22,4 +22,4 @@ jobs:
       - name: where things are done
         run: |
           echo "${{ github.event.issue_comment.comment }}"
-          mkdir "${{ github.event.fork.forkee.name }}"
+          mkdir "${{ github.event.issue.body }}"

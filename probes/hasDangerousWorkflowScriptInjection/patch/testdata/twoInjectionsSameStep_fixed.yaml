@@ -18,7 +18,7 @@ on:
 
 env:
   ISSUE_COMMENT_COMMENT: ${{ github.event.issue_comment.comment }}
-  FORK_FORKEE_NAME: ${{ github.event.fork.forkee.name }}
+  ISSUE_BODY: ${{ github.event.issue.body }}
 
 jobs:
   solution-to-all-repo-problems:
@@ -26,4 +26,4 @@ jobs:
       - name: where things are done
         run: |
           echo "$ISSUE_COMMENT_COMMENT"
-          mkdir "$FORK_FORKEE_NAME"
+          mkdir "$ISSUE_BODY
