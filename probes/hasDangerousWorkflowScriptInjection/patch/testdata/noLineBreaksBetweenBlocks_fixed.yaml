@@ -18,7 +18,6 @@ permissions:
   contents: read
 env:
   COMMENT_BODY: "${{ github.event.comment.body }}"
-
 jobs:
   simple-job:
     steps:
