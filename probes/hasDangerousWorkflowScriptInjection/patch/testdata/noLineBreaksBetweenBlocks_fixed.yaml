@@ -23,4 +23,4 @@ jobs:
     steps:
       - name: As simple as it cam be
         run: |
-          echo "${{ github.event.comment.body }}"
+          echo "$COMMENT_BODY"
