@@ -1,0 +1,18 @@
+name: Run benchmark comparison
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions: read-all
+
+env:
+  # Safe but unnused env var. Different name than the one our script would use.
+  # Ideally we should keep the name as it is
+  TITLE: ${{github.event.issue.title}}
+
+jobs:
+  using-workflow-level-env-vars:
+    steps:
+      - run: |
+          echo "${{ github.event.issue.title }}"

@@ -1,0 +1,40 @@
+name: Run benchmark comparison
+
+on:
+  issue_comment:
+    types: [created]
+  issue:
+    types: [created]
+  pull_request:
+    types: [created]
+
+permissions: read-all
+
+jobs:
+  using-job-level-env-vars:
+    env:
+      # Safe but unnused env var. Same name that our script would use
+      ISSUE_BODY: "${{ github.event.issue.body }}"
+
+      # Safe but unnused env var. Different name than the one our script would use.
+      # Ideally we should keep the name as it is
+      PULL_REQ_BODY: ${{ github.event.pull_request.body }}
+    steps:
+      - run: |
+          echo "$ISSUE_BODY"
+      - run: |
+          echo "$PULL_REQ_BODY"
+      
+  using-step-level-env-vars:
+    steps:
+      - name: the step
+        env:
+          # Safe but unnused env var. Same name that our script would use
+          HEAD_COMMIT_MESSAGE: "${{ github.event.head_commit.message }}"
+
+          # Safe but unnused env var. Different name than the one our script would use.
+          # Ideally we should keep the name as it is
+          PULL_REQ_TITLE: ${{ github.event.pull_request.title  }}
+        run: |
+          echo "$HEAD_COMMIT_MESSAGE"
+          echo "$PULL_REQ_TITLE"

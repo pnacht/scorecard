@@ -75,10 +75,27 @@ func Test_GeneratePatch(t *testing.T) {
 			expectedFilepath: "twoInjectionsSameStep_fixed.yaml",
 		},
 		{
-			name:             "Workflow already has env vars defined in different scopes",
-			inputFilepath:    "envVarsAlreadyExist.yaml",
-			expectedFilepath: "envVarsAlreadyExist_fixed.yaml",
+			name:             "Reuse existent workflow level env var, if has the same name we'd give",
+			inputFilepath:    "reuseWorkflowLevelEnvVars.yaml",
+			expectedFilepath: "reuseWorkflowLevelEnvVars_fixed.yaml",
 		},
+		// Test currently failing because we don't look for existent env vars pointing to the same content.
+		// Once proper behavior is implemented, enable this test
+		// {
+		// 	name:             "Reuse existent workflow level env var, if it DOES NOT have the same name we'd give",
+		// 	inputFilepath:    "reuseEnvVarWithDiffName.yaml",
+		// 	expectedFilepath: "reuseEnvVarWithDiffName_fixed.yaml",
+		// },
+
+		// Test currently failing because we don't look for existent env vars on smaller scopes -- job-level or step-level.
+		// In this case, we're always creating a new workflow-level env var. Note that this could lead to creation of env vars shadowed
+		// by the ones in smaller scope.
+		// Once proper behavior is implemented, enable this test
+		// {
+		// 	name:             "Reuse env var already existent on smaller scope, it convers case of same or different names",
+		// 	inputFilepath:    "reuseEnvVarSmallerScope.yaml",
+		// 	expectedFilepath: "reuseEnvVarSmallerScope_fixed.yaml",
+		// },
 		{
 			name:             "Bad indentation is kept the same",
 			inputFilepath:    "badIndentationMultipleInjections.yaml",
