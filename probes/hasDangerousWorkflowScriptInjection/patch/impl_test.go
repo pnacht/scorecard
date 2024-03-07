@@ -92,7 +92,7 @@ func Test_GeneratePatch(t *testing.T) {
 		// by the ones in smaller scope.
 		// Once proper behavior is implemented, enable this test
 		// {
-		// 	name:             "Reuse env var already existent on smaller scope, it convers case of same or different names",
+		// 	name:             "Reuse env var already existent on smaller scope, it converts case of same or different names",
 		// 	inputFilepath:    "reuseEnvVarSmallerScope.yaml",
 		// 	expectedFilepath: "reuseEnvVarSmallerScope_fixed.yaml",
 		// },
