@@ -21,6 +21,6 @@ env:
 jobs:
   simple-job:
     steps:
-      - name: As simple as it cam be
+      - name: As simple as it can be
         run: |
           echo "$COMMENT_BODY"
