@@ -15,11 +15,9 @@
 
   env:
     ISSUE_TITLE: ${{ github.event.issue.title }}
-    GITHUB_HEAD_REF: ${{ github.head_ref }}
 
   jobs:
         build:
-          name: Build and test
           runs-on: ubuntu-latest
           steps:
             - uses: actions/checkout@v2
@@ -35,10 +33,7 @@
 
             - name: Check title
               run: |
-                          title="$ISSUE_TITLE"
-                          if [[ ! $title =~ ^.*:\ .*$ ]]; then
+                          if [[ ! "$ISSUE_TITLE" =~ ^.*:\ .*$ ]]; then
                             echo "Bad issue title"
                             exit 1
                           fi
-                          another_test="$GITHUB_HEAD_REF"
-# Extra line below, to test the case of a /newline at EOF

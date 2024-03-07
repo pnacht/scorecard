@@ -97,9 +97,19 @@ func Test_GeneratePatch(t *testing.T) {
 		// 	expectedFilepath: "reuseEnvVarSmallerScope_fixed.yaml",
 		// },
 		{
-			name:             "Bad indentation is kept the same",
-			inputFilepath:    "badIndentationMultipleInjections.yaml",
-			expectedFilepath: "badIndentationMultipleInjections_fixed.yaml",
+			name:             "4-spaces indentation is kept the same",
+			inputFilepath:    "fourSpacesIndentationExistentEnvVar.yaml",
+			expectedFilepath: "fourSpacesIndentationExistentEnvVar_fixed.yaml",
+		},
+		{
+			name:             "Crazy but valid indentation is kept the same",
+			inputFilepath:    "crazyButValidIndentation.yaml",
+			expectedFilepath: "crazyButValidIndentation_fixed.yaml",
+		},
+		{
+			name:             "Newline on EOF is kept",
+			inputFilepath:    "newlineOnEOF.yaml",
+			expectedFilepath: "newlineOnEOF_fixed.yaml",
 		},
 		// Test currently failing due to lack of style awareness. Currently we always add a blankline after
 		// the env block.
