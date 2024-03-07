@@ -15,14 +15,13 @@ on: [pull_request]
 
 env:
     SUPER_RELEVANT: "bla"
-    ISSUE_TITLE: ${{ github.event.issue.title }}
 
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
             - run: |
-                if [[ ! "$ISSUE_TITLE" =~ ^.*:\ .*$ ]]; then
+                if [[ ! "${{ github.event.issue.title }}" =~ ^.*:\ .*$ ]]; then
                 echo "Bad issue title"
                 exit 1
                 fi
