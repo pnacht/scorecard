@@ -22,6 +22,7 @@ import (
 	"github.com/ossf/scorecard/v5/checker"
 	"github.com/ossf/scorecard/v5/finding"
 	"github.com/ossf/scorecard/v5/internal/probes"
+	"github.com/ossf/scorecard/v5/probes/hasDangerousWorkflowScriptInjection/patch"
 	"github.com/ossf/scorecard/v5/probes/internal/utils/uerror"
 )
 
@@ -67,6 +68,8 @@ func Run(raw *checker.RawResults) ([]finding.Finding, string, error) {
 				LineStart: &e.File.Offset,
 				Snippet:   &e.File.Snippet,
 			})
+			patch := patch.GeneratePatch(e.File)
+			f.WithPatch(&patch)
 			findings = append(findings, *f)
 		}
 	}
